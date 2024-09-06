@@ -9,8 +9,8 @@ body {
     background-color: #f4f4f9;
     padding: 20px;
     display: flex;
-    flex-direction: column; /* Ensure column layout */
-    align-items: center; /* Center content */
+    flex-direction: column;
+    align-items: center;
     justify-content: center;
     min-height: 100vh;
 }
@@ -36,7 +36,7 @@ body {
     gap: 30px;
     padding: 20px;
     width: 100%;
-    margin-top: 20px;;
+    margin-top: 20px;
 }
 
 /* Individual card */
@@ -49,6 +49,7 @@ body {
     max-width: 350px;
     position: relative;
     transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    margin-bottom: 20px; /* Add margin for spacing in mobile */
 }
 
 .card:hover {
@@ -154,21 +155,33 @@ body {
     z-index: 1;
 }
 
-/* Responsive layout for mobile first */
-@media (max-width: 767px) {
-    .card-container {
-        flex-direction: column;
-        align-items: center;
-    }
-
+/* Mobile first responsive layout */
+@media (any-pointer: coarse) {
     .card {
-        width: 100%;
-        max-width: 100%; /* Ensuring cards take full width */
+        width: 100% !important; 
+        max-width: none;  
+        margin: 10px 0;  
+        font-size: 200% !important;
+    }
+    
+    .card img {
+        height: auto; 
+    }
+    
+    .card-body {
+        padding: 15px;
     }
 }
 
 /* For desktop and larger screens */
-@media (min-width: 768px) {
+@media (any-pointer: fine) {
+    .card-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 30px;
+    }
+
     .card {
         width: calc(50% - 30px); /* Two cards side-by-side */
     }
