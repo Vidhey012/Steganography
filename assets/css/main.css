@@ -158,18 +158,30 @@ body {
 /* Mobile first responsive layout */
 @media (any-pointer: coarse) {
     .card {
-        width: 100% !important; 
-        max-width: none;  
-        margin: 10px 0;  
-        font-size: 200% !important;
+        width: 90% !important;  /* Adjust width for mobile devices */
+        max-width: none;  /* Remove max-width constraint */
+        margin: 10px auto;  /* Center the card and add margin */
     }
-    
+
     .card img {
-        height: auto; 
+        height: auto;  /* Ensure images are responsive */
     }
-    
-    .card-body {
-        padding: 15px;
+
+    .card-content {
+        padding: 15px;  /* Adjust padding */
+    }
+
+    .card-content h2 {
+        font-size: 26px;  /* Increase title font size */
+    }
+
+    .card-content p {
+        font-size: 18px;  /* Increase paragraph font size */
+    }
+
+    .card-content .a, .card-content .a1 {
+        padding: 14px 28px;  /* Adjust button padding */
+        font-size: 18px;  /* Increase button font size */
     }
 }
 
