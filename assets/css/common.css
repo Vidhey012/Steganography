@@ -1,9 +1,18 @@
-/* body, html {
-    height: 100%;
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f9;
     display: flex;
     flex-direction: column;
+    align-items: center;
     justify-content: center;
-} */
+    min-height: 100vh;
+}
 
 .background{
     background-image: url("..\\graphics\\common\\backdrop.png");
@@ -11,24 +20,44 @@
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+    background-attachment: fixed;
+}
+
+/* Heading styling */
+#header{
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    margin-top: 20px;
+}
+
+#headingImg {
+    width: auto;
+    max-width: 100%;
+    height: auto;
+    
+}
+
+/* Body styling */
+#body{
+    padding: 20px;
 }
 
 /* Footer styling */
 footer {
-    margin-top: 40px;
-    padding: 20px;
+    margin: 20px;
+    margin-bottom: 40px;
     text-align: center;
-    background: none; /* Remove background */
 }
 
 footer p {
     font-size: 16px;
-    color: rgb(202, 109, 125); /* Red color for text */
+    color: rgb(202, 109, 125);
     margin: 0;
 }
 
 footer a {
-    color: red; /* Red color for link */
+    color: rgb(214, 104, 104); 
     text-decoration: none;
     font-weight: bold;
 }

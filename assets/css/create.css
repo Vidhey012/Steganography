@@ -1,0 +1,295 @@
+/* Card container */
+.card-container {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+    width: 100%;
+    margin-top: 20px;
+}
+
+/* Individual card layout */
+.card {
+    display: flex;
+    flex-direction: row;
+    background: linear-gradient(145deg, #ffffff, #f0f0f3);
+    border-radius: 20px;
+    box-shadow: 12px 12px 24px #bebebe, -12px -12px 24px #ffffff;
+    overflow: hidden;
+    max-width: 1000px;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    margin-bottom: 20px;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: 16px 16px 28px #bebebe, -16px -16px 28px #ffffff;
+}
+
+/* Card Image on the left */
+.card img {
+    width: 40%;
+    height: auto;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s ease;
+    border-radius: 20px 0 0 20px;
+}
+
+.card:hover img {
+    transform: scale(1.05);
+}
+
+/* Card content on the right */
+.card-content {
+    width: 60%;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: left;
+}
+
+.card-content h2 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.card-content p {
+    font-size: 16px;
+    color: #555;
+    margin-bottom: 20px;
+    line-height: 1.5;
+}
+
+/* Buttons */
+.card-content .a,
+.card-content .a1 {
+    background: #0077ff;
+    color: white;
+    text-decoration: none;
+    padding: 12px 25px;
+    border-radius: 50px;
+    display: inline-block;
+    font-size: 16px;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+
+.card-content .a1 {
+    background: rgba(255, 166, 0, 0.801);
+}
+
+.card-content .a:hover {
+    background-color: #0059b3;
+    transform: translateY(-3px);
+}
+
+.card-content .a1:hover {
+    background-color: orange;
+    transform: translateY(-3px);
+}
+
+/* Mobile first responsive layout */
+@media (max-width: 768px) {
+    .card {
+        flex-direction: column;
+    }
+
+    .card img {
+        width: 100%;
+        border-radius: 20px 20px 0 0;
+    }
+
+    .card-content {
+        width: 100%;
+        text-align: center;
+        padding: 15px;
+    }
+
+    img.secret-code-image {
+        display: none;
+    }
+}
+
+/* For larger screens */
+@media (min-width: 769px) {
+    .card {
+        flex-direction: row;
+    }
+}
+
+/* Navigation bar at the top */
+.steps-nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    width: 100%;
+    gap: 15px;
+}
+
+/* Navigation buttons */
+.step-button {
+    background-color: transparent;
+    border: 2px solid #007bff !important;
+    border-radius: 50px;
+    padding: 12px 20px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #007bff;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
+    position: relative;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    min-width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.step-button:hover{
+    background-color: #007bff;
+    color: white;
+}
+
+.step-button.active {
+    background-color: #007bff;
+    color: white;
+    box-shadow: 0 6px 12px rgba(0, 123, 255, 0.3);
+}
+
+.nxt-btn{
+    float:right;
+    border-radius: 50px !important;
+}
+
+.prev-btn{
+    float:left;
+    border-radius: 50px !important;
+}
+
+.prev-btn:hover,
+.nxt-btn:hover{
+    background-color: transparent !important;
+    color:#007bff;    
+    border: 2px solid #007bff !important;
+}
+
+/* Content area */
+.step-content {
+    display: none;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.step-content.active {
+    display: block;
+    opacity: 1;
+}
+
+.step-content img{
+    position: relative;
+    margin: auto;
+}
+
+.step-content h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.step-content textarea, 
+.step-content input[type="number"] {
+    width: 100%;
+    padding: 12px 16px;
+    border-radius: 20px;
+    border: 2px solid blue;
+    background-color: transparent; 
+    font-size: 16px;
+    line-height: 1.5;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    resize: none;
+    outline: none;
+    overflow: hidden;
+}
+
+.step-content textarea:focus, 
+.step-content input[type="number"]:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 0 0.4rem rgba(38, 143, 255, 0.25);
+}
+
+textarea::placeholder,
+.step-content input[type="number"]::placeholder {
+    color: #6c757d; 
+    font-style: italic; 
+}
+
+.step-content button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 12px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    margin-top: 10px;
+    display: block; 
+    width: auto;
+}
+
+.step-content button:hover {
+    background-color: #0056b3;
+    transform: translateY(-2px);
+}
+
+/* rectangle for drag and drop */
+.upload-box {
+    width: 100%;
+    height: 200px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border: 2px dashed #007bff;
+    border-radius: 10px;
+    background: #f8f9fa;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.upload-box:hover {
+    background-color: #e9ecef;
+    border-color: #0056b3;
+}
+
+.upload-box p {
+    font-size: 16px;
+    color: #007bff;
+    margin: 0;
+}
+
+.upload-input {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.upload-box.hidden-text p {
+    opacity: 0;
+}
