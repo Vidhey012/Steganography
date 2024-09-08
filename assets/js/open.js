@@ -28,70 +28,72 @@ function showStep(step) {
 function validate(step){
     if(step==1){
         var style = document.createElement('style');
-        style.innerHTML = `
+            style.innerHTML = `
             input::placeholder {
                 color: #6c757d !important;
             }
-            .upload-box p {
-            color: #007bff !important;
-            }
-        `;
+            `;
         document.head.appendChild(style);
         return true;
     }
     else if(step==2){
-        var style = document.createElement('style');
-        style.innerHTML = `
-            textarea::placeholder {
-                color: #6c757d !important;
+        if(document.getElementById("upload").value.trim()==""){
+            var style = document.createElement('style');
+            style.innerHTML = `
+            .upload-box p {
+                color: red !important;
             }
+            `;
+            document.head.appendChild(style);
+            showStep(1);
+        } else {
+            var style = document.createElement('style');
+            style.innerHTML = `
             .upload-box p {
             color: #007bff !important;
             }
-        `;
-        document.head.appendChild(style);
-        if(document.getElementById("message").value.trim()==""){
-            document.getElementById("message").value="";
-            invalid("textarea","input");
-            showStep(1);
-        } else {
+            `;
+            document.head.appendChild(style);
             return true;
         }
     }
-    else if(step==3){
-        var style = document.createElement('style');
-        style.innerHTML = `
-            textarea::placeholder,
-            input::placeholder {
-                color: #6c757d !important;
-            }
-        `;
-        document.head.appendChild(style);
-        if(document.getElementById("message").value.trim()==""){
-            document.getElementById("message").value="";
-            invalid("textarea","input");
-            showStep(1);
-        } else if(document.getElementById("key").value.trim()==""){
-            document.getElementById("key").value="";
-            invalid("input","textarea");
-            showStep(2);
-        } else {
-            return true;
-        }
+    else {
+        return true;
     }
 }
 
-function invalid(tag,notag){
-    var style = document.createElement('style');
+function readMsg(){
+    if(document.getElementById("upload").value.trim()=="") {
+        var style = document.createElement('style');
         style.innerHTML = `
-            ${tag}::placeholder {
-                color: red !important;
-            }
-            ${notag}::placeholder {
-                color: #6c757d !important;
-            }
+        .upload-box p {
+            color: red !important;
+        }
         `;
         document.head.appendChild(style);
+        showStep(1);
+    } else if(document.getElementById("key").value.trim()=="") {
+        var style = document.createElement('style');
+        style.innerHTML = `
+        input::placeholder {
+            color: red !important;
+        }
+        `;
+        document.head.appendChild(style);
+        showStep(2);
+    } else {
+        var style = document.createElement('style');
+            style.innerHTML = `
+            .upload-box p {
+            color: #007bff !important;
+            }
+            input::placeholder {
+                color: #6c757d !important;
+            }
+            `;
+        document.head.appendChild(style);
+        generate();
+    }
 }
 
 showStep(1);
@@ -114,39 +116,21 @@ document.getElementById('upload').addEventListener('change', function(event) {
 });
 
 function generate(){
-    var style = document.createElement('style');
-        style.innerHTML = `
-            textarea::placeholder,
-            input::placeholder {
-                color: #6c757d !important;
-            }
-        `;
-        document.head.appendChild(style);
-    if(document.getElementById("upload").value==""){
-        document.getElementById('uploadBox').style.backgroundImage = "none";
-        uploadBox.classList.remove('hidden-text');
-        var style = document.createElement('style');
-        style.innerHTML = `
-        .upload-box p {
-            color: red !important;
-        }
-    `;
-    document.head.appendChild(style);
-    } else {        
-        var img= document.getElementById('canvas');
-        var msg="#*...start-vidhey...*#"+document.getElementById("message").value+"#*...end-vidhey...*#";
-        var key=document.getElementById("key").value;
-        var encrypted=encrypt(key,msg);   
-        document.getElementById("canvas").src=steg.encode(encrypted,img);
-    }
+    var img= document.getElementById('canvas');
+    var encMsg=steg.decode(img);
+    var key=document.getElementById("key").value;
+    var decrypted=decrypt(key, encMsg);
+    const match = decrypted.match(/#\*.*?start-vidhey.*?\*#(.*?)#\*.*?end-vidhey.*?\*#/s);
+    var message = match ? match[1].trim() : "Oops, this was an empty giftbox 🥺";
+    document.getElementById("message").value=message;
+    showStep(3);
 }
 
-function encrypt(key,msg){
+function decrypt(key, encMsg) {
     const morseKey = numberToMorse(key);
     const binaryKey = morseToBinary(morseKey);
-    const binaryMessage = textToBinary(msg);
-    const encryptedBinaryMessage = xorEncryptDecrypt(binaryMessage, binaryKey);
-    return encryptedBinaryMessage;
+    const decryptedBinaryMessage = xorEncryptDecrypt(encMsg, binaryKey);
+    return binaryToText(decryptedBinaryMessage);
 }
 
 const morseCodeMap = {
@@ -168,17 +152,30 @@ function morseToBinary(morse) {
     }).join('');
 }
 
-function textToBinary(text) {
-    return Array.from(text).map(char => {
-        const codePoint = char.codePointAt(0);
-        return codePoint.toString(2).padStart(21, '0');
-    }).join('');
-}
-
 function xorEncryptDecrypt(binaryMessage, binaryKey) {
     let result = '';
     for (let i = 0; i < binaryMessage.length; i++) {
         result += binaryMessage[i] === binaryKey[i % binaryKey.length] ? '0' : '1';
     }
     return result;
+}
+
+function binaryToText(binary) {
+    let text = '';
+    for (let i = 0; i < binary.length; i += 21) {
+        const binarySegment = binary.substring(i, i + 21);
+        if (binarySegment.length < 21) {
+            const paddedSegment = binarySegment.padStart(21, '0');
+            const codePoint = parseInt(paddedSegment, 2);
+            if (codePoint <= 0x10FFFF) {
+                text += String.fromCodePoint(codePoint);
+            }
+        } else {
+            const codePoint = parseInt(binarySegment, 2);
+            if (codePoint <= 0x10FFFF) {
+                text += String.fromCodePoint(codePoint);
+            }
+        }
+    }
+    return text;
 }
