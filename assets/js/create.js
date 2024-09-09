@@ -1,6 +1,5 @@
 function showStep(step) {
     if(validate(step)){
-        
         document.querySelectorAll('.step-button, .step-content').forEach(function(el) {
              el.classList.remove('active');
             });
@@ -137,7 +136,9 @@ function generate(){
         var msg="#*...start-vidhey...*#"+document.getElementById("message").value+"#*...end-vidhey...*#";
         var key=document.getElementById("key").value;
         var encrypted=encrypt(key,msg);   
-        document.getElementById("canvas").src=steg.encode(encrypted,img);
+        var stegImg=steg.encode(encrypted,img);
+        document.getElementById("canvas").src = stegImg;
+        download(stegImg);
     }
 }
 
@@ -181,4 +182,43 @@ function xorEncryptDecrypt(binaryMessage, binaryKey) {
         result += binaryMessage[i] === binaryKey[i % binaryKey.length] ? '0' : '1';
     }
     return result;
+}
+
+function download(img){
+    
+    Swal.fire({
+        imageUrl: img,
+        confirmButtonText: 'Download 📥',
+        imageAlt: "Stegnoed image"
+      }).then((result) => {
+        if(result.isConfirmed){
+            var img = document.getElementById('canvas');
+            var a = document.createElement('a');
+            a.download = 'Gift-Box.png';
+            a.href = img.src;
+            a.click();
+            home(0);
+        } else {
+            /* if not downloaded */
+        }       
+      });
+
+}
+
+function home(type){
+    Swal.fire({
+        imageUrl: 'assets\\graphics\\common\\quit.gif',
+        title: type == 0 ? "Download Successful 🎉" : " Are you sure 🤔",
+        text: type == 0 ? "Your file 🗂️ is ready! Would you like to head back to the home page? 🏠" : "You seem ready to leave! 🚪 Do you really want to quit? 😟",
+        showCancelButton: true,
+        confirmButtonText: type == 0 ? 'Home 🏡' : 'Yes, Leave 🏠',
+        cancelButtonText: type == 0 ?  'Stay 😌' : 'No, Stay 😌',
+        imageAlt: "Quit image"
+      }).then((result) => {
+        if(result.isConfirmed){
+            window.open('index.html','_self');
+        } else {
+            /* if not quitted */
+        }       
+      });
 }
