@@ -119,7 +119,7 @@ document.getElementById('upload').addEventListener('change', function(event) {
 });
 
 function generate(){
-    document.getElementsByClassName("full-screen").style.display = "flex";
+    document.getElementsByClassName("full-screen")[0].style.display = "flex";
     var style = document.createElement('style');
         style.innerHTML = `
             textarea::placeholder,
@@ -146,6 +146,9 @@ function generate(){
         var hexEnc=binaryToHex(encrypted);
         var stegImg=steg.encode(hexEnc,img);
         document.getElementById("canvas").src = stegImg;
+        // setTimeout(function() {
+        //     console.log("This message appears after 2 seconds.");
+        // }, 2000);
         download(stegImg);
     }
 }
@@ -209,7 +212,7 @@ function xorEncryptDecrypt(binaryMessage, binaryKey) {
 }
 
 function download(img){
-    document.getElementsByClassName("full-screen").style.display = "none";
+    document.getElementsByClassName("full-screen")[0].style.display = "none";
     Swal.fire({
         imageUrl: img,
         confirmButtonText: 'Download 📥',
