@@ -205,7 +205,7 @@ function binaryToText(binary) {
 function home(type){
     Swal.fire({
         imageUrl: 'assets\\graphics\\common\\quit.gif',
-        title: type == 0 ? "Download Successful 🎉" : " Are you sure 🤔",
+        title: type == 0 ? "Download Started 🎉" : " Are you sure 🤔",
         text: type == 0 ? "Your file 🗂️ is ready! Would you like to head back to the home page? 🏠" : "You seem ready to leave!🚪 Do you really want to quit? 😟",
         showCancelButton: true,
         confirmButtonText: type == 0 ? 'Home 🏡' : 'Yes, Leave 🏠',

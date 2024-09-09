@@ -124,4 +124,21 @@ footer a:hover {
     background: rgba(157, 195, 237, 0.345) !important;
 }
 
+.full-screen {
+    z-index: 11;
+    display: none;
+    justify-content: center; 
+    align-items: center;    
+    position: absolute;
+    top: 0;
+    left: 0;    
+    height: 100%;         
+    width: 100%;     
+    overflow: hidden;
+    background-color: rgba(157, 194, 237, 0.527) ;    
+}
 
+.full-screen img {
+    max-width: 50%;         
+    max-height: 50%;
+}
