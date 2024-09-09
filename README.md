@@ -4,7 +4,7 @@ Welcome to **Stegno**, a fun and secure steganography tool! Unlike traditional s
 
 🚀 **Live Demo:** [Stegno Web App](https://stegno.netlify.app)
 
----
+
 
 ## ✨ Project Overview
 
@@ -17,7 +17,7 @@ This web application allows users to encrypt their messages in a highly secure a
 - **Image Embedding:** The encrypted message is hidden within an image (the ribbon), adding an extra layer of security.
 - **Decryption:** The reverse process of untying the ribbon and unwrapping the gift reveals the original message.
 
----
+
 
 ## 🎨 UI Overview
 
@@ -34,7 +34,7 @@ The UI is sleek and user-friendly, guiding users step by step through the proces
     - Upload the steganographic image (the "gift box"). 📦
     - Enter the secret key to unwrap the box and reveal the hidden message. 🗝️
 
----
+
 
 ## 🛠️ Tech Stack
 
@@ -43,7 +43,7 @@ The UI is sleek and user-friendly, guiding users step by step through the proces
 - **Image Processing:** Image embedding for steganography
 - **Deployment:** Hosted on [Netlify](https://stegno.netlify.app)
 
----
+
 
 ## 💡 How It Works
 
@@ -62,13 +62,13 @@ The UI is sleek and user-friendly, guiding users step by step through the proces
 2. Enter the **secret key** to decrypt the hidden message.
 3. The message is revealed in the text area!
 
----
+
 
 ## 🔒 Security & Accuracy
 
 The combination of binary encoding, Morse code, and XOR encryption ensures that the hidden message is securely embedded within the image. This results in an accurate and tamper-proof steganographic process. 🔐
 
----
+
 
 ## 🛠️ How to Run Locally
 
@@ -87,19 +87,19 @@ The combination of binary encoding, Morse code, and XOR encryption ensures that 
     start index.html
     ```
 
----
+
 
 ## 🌐 Deployment
 
 The project is deployed and accessible via [Netlify](https://stegno.netlify.app). You can easily deploy it yourself using services like Netlify or Vercel.
 
----
+
 
 ## 📬 Feedback
 
 I'd love to hear your thoughts on this project! Feel free to reach out via [LinkedIn](https://www.linkedin.com/in/bhogadi-vidhey-aa62b71a8/) or open an issue on GitHub if you encounter any bugs or have suggestions for improvements. 😊
 
----
+
 
 ## 🔧 Future Enhancements
 
@@ -107,11 +107,11 @@ I'd love to hear your thoughts on this project! Feel free to reach out via [Link
 - Improve UI with more animations and visual feedback 💻
 - Add a feature for batch processing multiple messages 📑
 
----
+
 
 ## 👨‍💻 Author
 
 Made with ❤️ by [𝐕𝐢𝐝𝐡𝐞𝐲 𝐁𝐡𝐨𝐠𝐚𝐝𝐢](https://vidhey.netlify.app/)⚡
 
----
+
 
