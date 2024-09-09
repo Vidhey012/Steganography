@@ -139,11 +139,13 @@ function generate(){
     document.head.appendChild(style);
     } else {        
         document.getElementsByClassName("full-screen")[0].style.display = "flex";
+        alert(1);
         generateNow();        
     }
 }
 
 function generateNow(){
+    alert(2);
     var img= document.getElementById('canvas');
         var msg="#*...start-vidhey...*#"+document.getElementById("message").value+"#*...end-vidhey...*#";
         var key=document.getElementById("key").value;
