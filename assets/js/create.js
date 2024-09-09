@@ -146,10 +146,10 @@ function generate(){
         var hexEnc=binaryToHex(encrypted);
         var stegImg=steg.encode(hexEnc,img);
         document.getElementById("canvas").src = stegImg;
-        // setTimeout(function() {
-        //     console.log("This message appears after 2 seconds.");
-        // }, 2000);
+        setTimeout(function() {
+            console.log("This message appears after 2 seconds.");
         download(stegImg);
+        }, 2000);
     }
 }
 
