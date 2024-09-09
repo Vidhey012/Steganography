@@ -1,4 +1,4 @@
-# 🎁 Steganography Web Application - Gift Box Encryption 🎁
+# Steganography Web Application - Gift Box 🎁
 
 Welcome to **Stegno**, a fun and secure steganography tool! Unlike traditional steganography techniques, this web application presents a unique and interactive way to hide and reveal secret messages, all while keeping things wrapped up in a "gift box" metaphor. 🌟
 
