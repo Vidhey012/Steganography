@@ -13,8 +13,8 @@ window.onscroll = function () {
 function mypage(){
     Swal.fire({
         imageUrl: 'assets\\graphics\\common\\mypage.png',
-        title: " Are you sure 🤔",
-        text: "You seem ready to leave!🚪 Do you really want to quit? 😟",
+        title: " Are you sure? 🤔",
+        html: "You seem ready to leave!🚪<br/>Do you really want to quit? 😟",
         showCancelButton: true,
         confirmButtonText: 'Yes, Leave 🏠',
         cancelButtonText: 'No, Stay 😌',

@@ -128,7 +128,7 @@ function generate(){
     var key=document.getElementById("key").value;
     var decrypted=decrypt(key, encMsg);
     const match = decrypted.match(/#\*.*?start-vidhey.*?\*#(.*?)#\*.*?end-vidhey.*?\*#/s);
-    var message = match ? match[1].trim() : "Oops, this was an empty giftbox 🥺";
+    var message = match ? match[1].trim() : "Oops, this was an empty giftbox 🥺...!";
     document.getElementById("message").value=message;
     showStep(3);
 }
@@ -205,8 +205,8 @@ function binaryToText(binary) {
 function home(type){
     Swal.fire({
         imageUrl: 'assets\\graphics\\common\\quit.gif',
-        title: type == 0 ? "Download Started 🎉" : " Are you sure 🤔",
-        text: type == 0 ? "Your file 🗂️ is ready! Would you like to head back to the home page? 🏠" : "You seem ready to leave!🚪 Do you really want to quit? 😟",
+        title: type == 0 ? "Download Started 🎉" : " Are you sure? 🤔",
+        html: type == 0 ? "Your file 🗂️ is ready!<br/>Would you like to head back to the home page? 🏠" : "You seem ready to leave!🚪<br/>Do you really want to quit? 😟",
         showCancelButton: true,
         confirmButtonText: type == 0 ? 'Home 🏡' : 'Yes, Leave 🏠',
         cancelButtonText: type == 0 ?  'Stay 😌' : 'No, Stay 😌',
