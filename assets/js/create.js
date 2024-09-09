@@ -119,7 +119,7 @@ document.getElementById('upload').addEventListener('change', function(event) {
 });
 
 function generate(){
-    document.getElementById("spinner").style.display = "flex";
+    document.getElementsByClassName("full-screen").style.display = "flex";
     var style = document.createElement('style');
         style.innerHTML = `
             textarea::placeholder,
@@ -209,7 +209,7 @@ function xorEncryptDecrypt(binaryMessage, binaryKey) {
 }
 
 function download(img){
-    document.getElementById("spinner").style.display = "none";
+    document.getElementsByClassName("full-screen").style.display = "none";
     Swal.fire({
         imageUrl: img,
         confirmButtonText: 'Download 📥',
