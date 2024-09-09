@@ -103,9 +103,15 @@ document.getElementById('upload').addEventListener('change', function(event) {
     if (file) {
         const reader = new FileReader();
         reader.onload = function(e) {
-            document.getElementById('uploadBox').style.backgroundImage = `url(${e.target.result})`;
-            document.getElementById('canvas').src=e.target.result;
-            uploadBox.classList.add('hidden-text');
+            const img = new Image();
+            img.onload = function() {
+                document.getElementById('uploadBox').style.backgroundImage = `url(${e.target.result})`;
+                document.getElementById('canvas').src=e.target.result;
+                document.getElementById('canvas').style.height=img.height;
+                document.getElementById('canvas').style.width=img.width;
+                uploadBox.classList.add('hidden-text');
+            };
+            img.src = e.target.result;
         }
         reader.readAsDataURL(file);
     } else {        
@@ -117,7 +123,8 @@ document.getElementById('upload').addEventListener('change', function(event) {
 
 function generate(){
     var img= document.getElementById('canvas');
-    var encMsg=steg.decode(img);
+    var encHex=steg.decode(img);
+    var encMsg=hexToBinary(encHex);
     var key=document.getElementById("key").value;
     var decrypted=decrypt(key, encMsg);
     const match = decrypted.match(/#\*.*?start-vidhey.*?\*#(.*?)#\*.*?end-vidhey.*?\*#/s);
@@ -152,6 +159,21 @@ function morseToBinary(morse) {
     }).join('');
 }
 
+function hexToBinary(hexString) {
+    hexString = hexString.replace(/[^0-9A-Fa-f]/g, '');
+
+    let binaryString = '';
+    for (let i = 0; i < hexString.length; i++) {
+        const hexDigit = hexString.charAt(i);
+        const binaryChunk = parseInt(hexDigit, 16).toString(2).padStart(4, '0');
+        binaryString += binaryChunk;
+    }
+
+    binaryString = binaryString.replace(/^0+/, '');
+
+    return binaryString.length > 0 ? binaryString : '0';
+}
+
 function xorEncryptDecrypt(binaryMessage, binaryKey) {
     let result = '';
     for (let i = 0; i < binaryMessage.length; i++) {
@@ -178,4 +200,22 @@ function binaryToText(binary) {
         }
     }
     return text;
+}
+
+function home(type){
+    Swal.fire({
+        imageUrl: 'assets\\graphics\\common\\quit.gif',
+        title: type == 0 ? "Download Successful 🎉" : " Are you sure 🤔",
+        text: type == 0 ? "Your file 🗂️ is ready! Would you like to head back to the home page? 🏠" : "You seem ready to leave!🚪 Do you really want to quit? 😟",
+        showCancelButton: true,
+        confirmButtonText: type == 0 ? 'Home 🏡' : 'Yes, Leave 🏠',
+        cancelButtonText: type == 0 ?  'Stay 😌' : 'No, Stay 😌',
+        imageAlt: "Quit image"
+      }).then((result) => {
+        if(result.isConfirmed){
+            window.open('index.html','_self');
+        } else {
+            /* if not quitted */
+        }       
+      });
 }

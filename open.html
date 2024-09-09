@@ -32,7 +32,7 @@
                         <input type="file" id="upload" class="upload-input" accept="image/*">
                     </div>   
                     <img id="canvas" style="display:none;"/>        
-                    <button class="btn prev-btn" onclick="window.open('index.html','_self')">Home 🏡</button>
+                    <button class="btn prev-btn" onclick="home(1)">Home 🏡</button>
                     <button class="btn nxt-btn" onclick="showStep(2)">Untie <i class="bi bi-arrow-right-circle"></i></button>
                 </div>
                 <div id="content2" class="step-content active">
@@ -42,9 +42,9 @@
                     <button class="btn nxt-btn" onclick="readMsg()">Unwrap <i class="bi bi-arrow-right-circle"></i></button>
                 </div>
                 <div id="content3" class="step-content">
-                    <textarea id="message" rows="8" placeholder="Enter your message" disabled></textarea>     
+                    <textarea id="message" rows="8" placeholder="Enter your message" readonly></textarea>     
                     <button class="btn prev-btn" onclick="showStep(2)"><i class="bi bi-arrow-left-circle"></i> Pass 🔐</button>
-                    <button class="btn nxt-btn"  onclick="download()">Download </button>
+                    <button class="btn nxt-btn"  onclick="home(1)">Home 🏡</button>
                 </div>
             </div>
             
@@ -52,7 +52,7 @@
     </div>
     </div>
     <footer>
-        <p>Made for ❤️ by <a href="https://vidhey.netlify.app" target="_blank">𝐕𝐢𝐝𝐡𝐞𝐲 𝐁𝐡𝐨𝐠𝐚𝐝𝐢</a>⚡</p>
+        <p>Made for ❤️ by <a href="#" onclick="mypage()">𝐕𝐢𝐝𝐡𝐞𝐲 𝐁𝐡𝐨𝐠𝐚𝐝𝐢</a>⚡</p>
     </footer>
     <script src="assets/js/open.js"></script>
     <script src="assets/js/common.js"></script>

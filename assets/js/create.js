@@ -100,9 +100,15 @@ document.getElementById('upload').addEventListener('change', function(event) {
     if (file) {
         const reader = new FileReader();
         reader.onload = function(e) {
-            document.getElementById('uploadBox').style.backgroundImage = `url(${e.target.result})`;
-            document.getElementById('canvas').src=e.target.result;
-            uploadBox.classList.add('hidden-text');
+            const img = new Image();
+            img.onload = function() {
+                document.getElementById('uploadBox').style.backgroundImage = `url(${e.target.result})`;
+                document.getElementById('canvas').src=e.target.result;
+                document.getElementById('canvas').style.height=img.height;
+                document.getElementById('canvas').style.width=img.width;
+                uploadBox.classList.add('hidden-text');
+            };
+            img.src = e.target.result;
         }
         reader.readAsDataURL(file);
     } else {        
@@ -136,7 +142,8 @@ function generate(){
         var msg="#*...start-vidhey...*#"+document.getElementById("message").value+"#*...end-vidhey...*#";
         var key=document.getElementById("key").value;
         var encrypted=encrypt(key,msg);   
-        var stegImg=steg.encode(encrypted,img);
+        var hexEnc=binaryToHex(encrypted);
+        var stegImg=steg.encode(hexEnc,img);
         document.getElementById("canvas").src = stegImg;
         download(stegImg);
     }
@@ -176,6 +183,22 @@ function textToBinary(text) {
     }).join('');
 }
 
+function binaryToHex(binaryString) {
+    binaryString = binaryString.replace(/[^01]/g, '');
+    while (binaryString.length % 4 !== 0) {
+        binaryString = '0' + binaryString;
+    }
+
+    let hexString = '';
+    for (let i = 0; i < binaryString.length; i += 4) {
+        const binaryChunk = binaryString.substr(i, 4);
+        const hexDigit = parseInt(binaryChunk, 2).toString(16).toUpperCase();
+        hexString += hexDigit;
+    }
+
+    return hexString;
+}
+
 function xorEncryptDecrypt(binaryMessage, binaryKey) {
     let result = '';
     for (let i = 0; i < binaryMessage.length; i++) {
@@ -209,7 +232,7 @@ function home(type){
     Swal.fire({
         imageUrl: 'assets\\graphics\\common\\quit.gif',
         title: type == 0 ? "Download Successful 🎉" : " Are you sure 🤔",
-        text: type == 0 ? "Your file 🗂️ is ready! Would you like to head back to the home page? 🏠" : "You seem ready to leave! 🚪 Do you really want to quit? 😟",
+        text: type == 0 ? "Your file 🗂️ is ready! Would you like to head back to the home page? 🏠" : "You seem ready to leave!🚪 Do you really want to quit? 😟",
         showCancelButton: true,
         confirmButtonText: type == 0 ? 'Home 🏡' : 'Yes, Leave 🏠',
         cancelButtonText: type == 0 ?  'Stay 😌' : 'No, Stay 😌',
