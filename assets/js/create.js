@@ -139,7 +139,12 @@ function generate(){
     document.head.appendChild(style);
     } else {        
         document.getElementsByClassName("full-screen")[0].style.display = "flex";
-        var img= document.getElementById('canvas');
+        generateNow();        
+    }
+}
+
+function generateNow(){
+    var img= document.getElementById('canvas');
         var msg="#*...start-vidhey...*#"+document.getElementById("message").value+"#*...end-vidhey...*#";
         var key=document.getElementById("key").value;
         var encrypted=encrypt(key,msg);   
@@ -150,7 +155,6 @@ function generate(){
         //     console.log("This message appears after 2 seconds.");
         // }, 2000);
         download(stegImg);
-    }
 }
 
 function encrypt(key,msg){
