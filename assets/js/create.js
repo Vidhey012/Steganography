@@ -157,8 +157,7 @@ function encrypt(key,msg){
     const morseKey = numberToMorse(key);
     const binaryKey = morseToBinary(morseKey);
     const binaryMessage = textToBinary(msg);
-    // const encryptedBinaryMessage = xorEncryptDecrypt(binaryMessage, binaryKey);
-    const encryptedBinaryMessage = xorEncryptDecrypt(binaryMessage, textToBinary(key));  
+    const encryptedBinaryMessage = xorEncryptDecrypt(binaryMessage, binaryKey);
     return encryptedBinaryMessage;
 }
 
