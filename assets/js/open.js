@@ -136,7 +136,8 @@ function generate(){
 function decrypt(key, encMsg) {
     const morseKey = numberToMorse(key);
     const binaryKey = morseToBinary(morseKey);
-    const decryptedBinaryMessage = xorEncryptDecrypt(encMsg, binaryKey);
+    // const decryptedBinaryMessage = xorEncryptDecrypt(encMsg, binaryKey);
+    const decryptedBinaryMessage = xorEncryptDecrypt(encMsg, textToBinary(key));
     return binaryToText(decryptedBinaryMessage);
 }
 
@@ -200,6 +201,13 @@ function binaryToText(binary) {
         }
     }
     return text;
+}
+
+function textToBinary(text) {
+    return Array.from(text).map(char => {
+        const codePoint = char.codePointAt(0);
+        return codePoint.toString(2).padStart(21, '0');
+    }).join('');
 }
 
 function home(type){
