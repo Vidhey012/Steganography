@@ -127,7 +127,6 @@ function generate(){
     var encMsg=hexToBinary(encHex);
     var key=document.getElementById("key").value;
     var decrypted=decrypt(key, encMsg);
-    alert(decrypted);
     const match = decrypted.match(/#\*.*?start-vidhey.*?\*#(.*?)#\*.*?end-vidhey.*?\*#/s);
     var message = match ? match[1].trim() : "Oops, this was an empty giftbox 🥺...!";
     document.getElementById("message").value=message;
@@ -137,8 +136,7 @@ function generate(){
 function decrypt(key, encMsg) {
     const morseKey = numberToMorse(key);
     const binaryKey = morseToBinary(morseKey);
-    // const decryptedBinaryMessage = xorEncryptDecrypt(encMsg, binaryKey);
-    const decryptedBinaryMessage = xorEncryptDecrypt(encMsg, textToBinary(key));
+    const decryptedBinaryMessage = xorEncryptDecrypt(encMsg, binaryKey);
     return binaryToText(decryptedBinaryMessage);
 }
 
@@ -202,13 +200,6 @@ function binaryToText(binary) {
         }
     }
     return text;
-}
-
-function textToBinary(text) {
-    return Array.from(text).map(char => {
-        const codePoint = char.codePointAt(0);
-        return codePoint.toString(2).padStart(21, '0');
-    }).join('');
 }
 
 function home(type){
