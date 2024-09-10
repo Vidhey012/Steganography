@@ -127,6 +127,7 @@ function generate(){
     var encMsg=hexToBinary(encHex);
     var key=document.getElementById("key").value;
     var decrypted=decrypt(key, encMsg);
+    alert(decrypted);
     const match = decrypted.match(/#\*.*?start-vidhey.*?\*#(.*?)#\*.*?end-vidhey.*?\*#/s);
     var message = match ? match[1].trim() : "Oops, this was an empty giftbox 🥺...!";
     document.getElementById("message").value=message;
