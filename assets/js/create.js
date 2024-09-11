@@ -146,6 +146,9 @@ function generate(){
         var hexEnc=binaryToHex(encrypted);
         var stegImg=steg.encode(hexEnc,img);
         document.getElementById("canvas").src = stegImg;
+        console.log("msg :"+msg);
+        console.log("key :"+key);
+        console.log("hex :"+hexEnc);
         // setTimeout(function() {
         //     console.log("This message appears after 2 seconds.");
         // }, 2000);
@@ -157,7 +160,11 @@ function encrypt(key,msg){
     const morseKey = numberToMorse(key);
     const binaryKey = morseToBinary(morseKey);
     const binaryMessage = textToBinary(msg);
-    const encryptedBinaryMessage = xorEncryptDecrypt(binaryMessage, binaryKey);
+    const encryptedBinaryMessage = "1"+xorEncryptDecrypt(binaryMessage, binaryKey);
+    console.log("morse :"+morseKey);
+    console.log("bin key :"+binaryKey);
+    console.log("bin msg :"+binaryMessage);
+    console.log("xor :"+encryptedBinaryMessage);
     return encryptedBinaryMessage;
 }
 

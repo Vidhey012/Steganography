@@ -125,11 +125,16 @@ function generate(){
     var img= document.getElementById('canvas');
     var encHex=steg.decode(img);
     var encMsg=hexToBinary(encHex);
+    encMsg=encMsg.substring(1);
     var key=document.getElementById("key").value;
     var decrypted=decrypt(key, encMsg);
     const match = decrypted.match(/#\*.*?start-vidhey.*?\*#(.*?)#\*.*?end-vidhey.*?\*#/s);
     var message = match ? match[1].trim() : "Oops, this was an empty giftbox 🥺...!";
     document.getElementById("message").value=message;
+    console.log("key :"+key);
+    console.log("msg :"+decrypted);
+    console.log("hex :"+encHex);
+    console.log("xor :"+encMsg);
     showStep(3);
 }
 
@@ -137,6 +142,9 @@ function decrypt(key, encMsg) {
     const morseKey = numberToMorse(key);
     const binaryKey = morseToBinary(morseKey);
     const decryptedBinaryMessage = xorEncryptDecrypt(encMsg, binaryKey);
+    console.log("morse :"+morseKey);
+    console.log("bin key :"+binaryKey);
+    console.log("bin msg :"+decryptedBinaryMessage);
     return binaryToText(decryptedBinaryMessage);
 }
 
