@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="assets/vendor/sweetalert.min.css">
 </head>
 <body class="background">
+    <img id="canvas" style="display:none; position:absolute; top:0px;"/>  
     <div id="header"><img id="headingImg" src="assets/graphics/create_page/heading.png" alt="Wrap a Message"/> </div>
     <div id="body"><div class="card-container">
         <!-- First Stylish Card -->
@@ -42,7 +43,7 @@
                         <p>Drag & Drop your picture here or click to select</p>
                         <input type="file" id="upload" class="upload-input" accept="image/*">
                     </div>        
-                    <img id="canvas" style="display:none;"/>       
+                    <!-- <img id="canvas" style="display:none;"/>        -->
                     <button class="btn prev-btn" onclick="showStep(2)"><i class="bi bi-arrow-left-circle"></i> Pass 🔐</button>
                     <button class="btn nxt-btn"  onclick="generate()">Generate 🎁</button>
                 </div>
@@ -52,7 +53,7 @@
     </div>
     </div>
     <footer>
-        <p>Made for ❤️ by <a href="#" onclick="mypage()">𝐕𝐢𝐝𝐡𝐞𝐲 𝐁𝐡𝐨𝐠𝐚𝐝𝐢</a>⚡</p>
+        <p>Made with ❤️ by <a href="#" onclick="mypage()">𝐕𝐢𝐝𝐡𝐞𝐲 𝐁𝐡𝐨𝐠𝐚𝐝𝐢</a>⚡</p>
     </footer>
     <div class="full-screen">
         <img src="assets/graphics/common/loader.gif" alt="Loader Image">
