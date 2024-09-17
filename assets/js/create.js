@@ -119,6 +119,8 @@ document.getElementById('upload').addEventListener('change', function(event) {
 });
 
 function generate(){
+    
+    document.getElementsByClassName("full-screen")[0].style.display = "flex";
     var style = document.createElement('style');
         style.innerHTML = `
             textarea::placeholder,
