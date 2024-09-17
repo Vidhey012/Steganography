@@ -118,43 +118,43 @@ document.getElementById('upload').addEventListener('change', function(event) {
     }
 });
 
-// function generate(){
-//     var style = document.createElement('style');
-//         style.innerHTML = `
-//             textarea::placeholder,
-//             input::placeholder {
-//                 color: #6c757d !important;
-//             }
-//         `;
-//         document.head.appendChild(style);
-//     if(document.getElementById("upload").value==""){
-//         document.getElementById('uploadBox').style.backgroundImage = "none";
-//         uploadBox.classList.remove('hidden-text');
-//         var style = document.createElement('style');
-//         style.innerHTML = `
-//         .upload-box p {
-//             color: red !important;
-//         }
-//     `;
-//     document.head.appendChild(style);
-//     } else {        
-//         document.getElementsByClassName("full-screen")[0].style.display = "flex";
-//         var img= document.getElementById('canvas');
-//         var msg="#*...start-vidhey...*#"+document.getElementById("message").value+"#*...end-vidhey...*#";
-//         var key=document.getElementById("key").value;
-//         var encrypted=encrypt(key,msg);   
-//         var hexEnc=binaryToHex(encrypted);
-//         var stegImg=steg.encode(hexEnc,img);
-//         document.getElementById("canvas").src = stegImg;
-//         // console.log("msg :"+msg);
-//         // console.log("key :"+key);
-//         // console.log("hex :"+hexEnc);
-//         // setTimeout(function() {
-//         //     console.log("This message appears after 2 seconds.");
-//         // }, 2000);
-//         download(stegImg);
-//     }
-// }
+function generate(){
+    var style = document.createElement('style');
+        style.innerHTML = `
+            textarea::placeholder,
+            input::placeholder {
+                color: #6c757d !important;
+            }
+        `;
+        document.head.appendChild(style);
+    if(document.getElementById("upload").value==""){
+        document.getElementById('uploadBox').style.backgroundImage = "none";
+        uploadBox.classList.remove('hidden-text');
+        var style = document.createElement('style');
+        style.innerHTML = `
+        .upload-box p {
+            color: red !important;
+        }
+    `;
+    document.head.appendChild(style);
+    } else {        
+        document.getElementsByClassName("full-screen")[0].style.display = "flex";
+        var img= document.getElementById('canvas');
+        var msg="#*...start-vidhey...*#"+document.getElementById("message").value+"#*...end-vidhey...*#";
+        var key=document.getElementById("key").value;
+        var encrypted=encrypt(key,msg);   
+        var hexEnc=binaryToHex(encrypted);
+        var stegImg=steg.encode(hexEnc,img);
+        document.getElementById("canvas").src = stegImg;
+        // console.log("msg :"+msg);
+        // console.log("key :"+key);
+        // console.log("hex :"+hexEnc);
+        // setTimeout(function() {
+        //     console.log("This message appears after 2 seconds.");
+        // }, 2000);
+        download(stegImg);
+    }
+}
 
 function encrypt(key,msg){
     const morseKey = numberToMorse(key);
